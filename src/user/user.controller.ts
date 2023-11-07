@@ -12,6 +12,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserSignInDto } from './dto/sigin-user.dto';
+import { CurrentUser } from 'src/decoretors/currecnt-user.decorator';
 
 @Controller('user')
 export class UserController {
@@ -33,7 +34,10 @@ export class UserController {
   async findAll(): Promise<UserEntity[]> {
     return await this.userService.findAll();
   }
-
+  @Get('me')
+  async getme(@CurrentUser() user: UserEntity): Promise<UserEntity> {
+    return user;
+  }
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<UserEntity> {
     return await this.userService.findOne(+id);
