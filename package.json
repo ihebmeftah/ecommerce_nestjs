@@ -18,13 +18,12 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm":"npm run build && npx typeorm -d dist/db/data-source.js",
-    "migration:generate":"npm run typeorm -- migration:generate",
-    "migration:run":"npm run typeorm -- migration:run",
-    "migration:revert":"npm run typeorm -- migration:revert",
-    "db:drop":"npm run typeorm schema:drop"
-
-    },
+    "typeorm": "npm run build && npx typeorm -d dist/db/data-source.js",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "db:drop": "npm run typeorm schema:drop"
+  },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
@@ -32,8 +31,11 @@
     "@nestjs/mapped-types": "^2.0.2",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.0",
+    "@types/jsonwebtoken": "^9.0.4",
+    "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
