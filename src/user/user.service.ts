@@ -73,7 +73,9 @@ export class UserService {
     const user = await this.findOne(id);
     updateUserDto.password = await hash(updateUserDto.password, 10);
     Object.assign(user, updateUserDto);
-    return await this.userRepo.save(user);
+    const userUpdate = await this.userRepo.save(user);
+    delete user.password;
+    return userUpdate;
   }
 
   async remove(id: number) {
