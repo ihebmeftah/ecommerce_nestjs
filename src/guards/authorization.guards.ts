@@ -9,9 +9,10 @@ export const AuthorizeGuard = (allowedRoles: string[]) => {
   class RolesGuardMixin implements CanActivate {
     canActivate(context: ExecutionContext): boolean {
       const request = context.switchToHttp().getRequest();
-      const result = request.CurrentUser?.Roles.map((roles: string) =>
-        allowedRoles.includes(roles),
-      ).find((value: boolean) => value === true);
+      const result = request?.currentUser?.role
+        .map((roles: string) => allowedRoles.includes(roles))
+        .find((value: boolean) => value === true);
+
       if (result) return true;
       throw new UnauthorizedException('You dont have access');
     }
