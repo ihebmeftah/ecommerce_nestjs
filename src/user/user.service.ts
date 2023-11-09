@@ -41,6 +41,7 @@ export class UserService {
     delete userExist.password;
     return userExist;
   }
+
   async create(createUserDto: CreateUserDto): Promise<UserEntity> {
     const userEmail = await this.findOneByEmail(createUserDto.email);
     if (userEmail)
