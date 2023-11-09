@@ -1,6 +1,7 @@
+import { CategoryEntity } from 'src/category/entities/category.entity';
 import { TimeStampEntity } from 'src/generics/db/timestamp.entity';
 import { Roles } from 'src/generics/eum/user-role.enum';
-import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
+import { Column, PrimaryGeneratedColumn, Entity, OneToMany } from 'typeorm';
 
 @Entity('users')
 export class UserEntity extends TimeStampEntity {
@@ -14,4 +15,6 @@ export class UserEntity extends TimeStampEntity {
   password: string;
   @Column({ type: 'enum', enum: Roles, array: true, default: [Roles.USER] })
   role: Roles[];
+  @OneToMany(() => CategoryEntity, (categorie) => categorie.addedBy)
+  categories: CategoryEntity[];
 }
