@@ -1,6 +1,7 @@
 import { CategoryEntity } from 'src/category/entities/category.entity';
 import { TimeStampEntity } from 'src/generics/db/timestamp.entity';
 import { Roles } from 'src/generics/eum/user-role.enum';
+import { ProductEntity } from 'src/product/entities/product.entity';
 import { Column, PrimaryGeneratedColumn, Entity, OneToMany } from 'typeorm';
 
 @Entity('users')
@@ -17,4 +18,6 @@ export class UserEntity extends TimeStampEntity {
   role: Roles[];
   @OneToMany(() => CategoryEntity, (categorie) => categorie.addedBy)
   categories: CategoryEntity[];
+  @OneToMany(() => ProductEntity, (product) => product.addedBy)
+  products: ProductEntity[];
 }

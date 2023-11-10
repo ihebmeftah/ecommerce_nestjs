@@ -13,9 +13,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserSignInDto } from './dto/sigin-user.dto';
-import { CurrentUser } from 'src/decoretors/currecnt-user.decorator';
-import { AuthentificationGuard } from 'src/guards/authentifcation.guards';
-import { AuthorizeGuard } from 'src/guards/authorization.guards';
+import { CurrentUser } from 'src/user/decoretors/currecnt-user.decorator';
+import { AuthentificationGuard } from 'src/user/guards/authentifcation.guards';
+import { AuthorizeGuard } from 'src/user/guards/authorization.guards';
 import { Roles } from 'src/generics/eum/user-role.enum';
 
 @Controller('user')
