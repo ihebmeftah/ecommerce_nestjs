@@ -11,10 +11,10 @@ import {
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { CurrentUser } from 'src/decoretors/currecnt-user.decorator';
+import { CurrentUser } from 'src/user/decoretors/currecnt-user.decorator';
 import { UserEntity } from 'src/user/entities/user.entity';
-import { AuthentificationGuard } from 'src/guards/authentifcation.guards';
-import { AuthorizeGuard } from 'src/guards/authorization.guards';
+import { AuthentificationGuard } from 'src/user/guards/authentifcation.guards';
+import { AuthorizeGuard } from 'src/user/guards/authorization.guards';
 import { Roles } from 'src/generics/eum/user-role.enum';
 import { CategoryEntity } from './entities/category.entity';
 
