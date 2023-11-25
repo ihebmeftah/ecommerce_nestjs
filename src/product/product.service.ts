@@ -48,8 +48,26 @@ export class ProductService {
     return product;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(
+    id: number,
+    updateProductDto: UpdateProductDto,
+  ): Promise<ProductEntity> {
+    const product = await this.productRepo.findOne({
+      where: { id },
+    });
+    if (!product)
+      throw new HttpException(
+        'Product with this id : ' + id + ' not found',
+        HttpStatus.NOT_FOUND,
+      );
+    const category = await this.categoryServices.findOne(
+      +updateProductDto.categoryId,
+    );
+    product.category = category;
+    Object.assign(product, updateProductDto);
+    const productupdated = await this.productRepo.save(product);
+
+    return productupdated;
   }
 
   async remove(id: number) {
