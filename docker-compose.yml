@@ -13,6 +13,20 @@ services:
       - 5432:5432
     volumes:
       - data:/var/lib/postgresql/data
+
+  pg-admin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=mypassword
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
 volumes:
   data:
+  pgadmin-data:
 
