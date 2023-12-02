@@ -60,10 +60,12 @@ export class ProductService {
         'Product with this id : ' + id + ' not found',
         HttpStatus.NOT_FOUND,
       );
-    const category = await this.categoryServices.findOne(
-      +updateProductDto.categoryId,
-    );
-    product.category = category;
+    if (updateProductDto.categoryId) {
+      const category = await this.categoryServices.findOne(
+        +updateProductDto.categoryId,
+      );
+      product.category = category;
+    }
     Object.assign(product, updateProductDto);
     const productupdated = await this.productRepo.save(product);
     return productupdated;
@@ -71,6 +73,6 @@ export class ProductService {
 
   async remove(id: number) {
     const product = await this.findOne(+id);
-    return await this.productRepo.delete(+product.id);
+    return await this.productRepo.delete(product.id);
   }
 }

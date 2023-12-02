@@ -52,7 +52,7 @@ export class ProductController {
   }
 
   // ADMIN ONLY CAN DELETE PRODUCT (LOGIN IS REQUIRED)
-  @UseGuards(AuthentificationGuard)
+  @UseGuards(AuthentificationGuard, AuthorizeGuard([Roles.ADMIN]))
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(+id);
