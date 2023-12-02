@@ -51,17 +51,14 @@ export class UserController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthentificationGuard)
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return await this.userService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
+  @UseGuards(AuthentificationGuard, AuthorizeGuard([Roles.ADMIN]))
   async remove(@Param('id') id: string) {
     return await this.userService.remove(+id);
-  }
-
-  @Delete()
-  async deleteAll() {
-    return await this.userService.deleteAll();
   }
 }

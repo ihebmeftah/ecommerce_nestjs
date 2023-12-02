@@ -84,10 +84,6 @@ export class UserService {
     return this.userRepo.delete(user.id);
   }
 
-  async deleteAll(): Promise<string> {
-    this.userRepo.clear();
-    return 'All users deleted';
-  }
   async findOneByEmail(email: string): Promise<UserEntity> {
     return await this.userRepo.findOneBy({
       email: email,
