@@ -66,7 +66,6 @@ export class ProductService {
     product.category = category;
     Object.assign(product, updateProductDto);
     const productupdated = await this.productRepo.save(product);
-
     return productupdated;
   }
 

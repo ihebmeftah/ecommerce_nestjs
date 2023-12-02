@@ -21,6 +21,8 @@ import { CategoryEntity } from './entities/category.entity';
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
+
+  // ADMIN AND CLIENT ONLY CAN SEE LIST OF PRODUCTS (LOGIN IS REQUIRED)
   @UseGuards(AuthentificationGuard, AuthorizeGuard([Roles.ADMIN]))
   @Post()
   async create(
@@ -30,15 +32,21 @@ export class CategoryController {
     return await this.categoryService.create(createCategoryDto, user);
   }
 
+  // ADMIN AND CLIENT ONLY CAN SEE LIST OF PRODUCTS (LOGIN IS REQUIRED)
+  @UseGuards(AuthentificationGuard)
   @Get()
   async findAll(): Promise<CategoryEntity[]> {
     return await this.categoryService.findAll();
   }
 
+  // ADMIN AND CLIENT ONLY CAN SEE ONE PRODUCT (LOGIN IS REQUIRED)
+  @UseGuards(AuthentificationGuard)
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<CategoryEntity> {
     return await this.categoryService.findOne(+id);
   }
+
+  // ADMIN ONLY CAN UPDATE PRODUCT (LOGIN IS REQUIRED)
   @UseGuards(AuthentificationGuard, AuthorizeGuard([Roles.ADMIN]))
   @Patch(':id')
   update(
@@ -47,6 +55,8 @@ export class CategoryController {
   ) {
     return this.categoryService.update(+id, updateCategoryDto);
   }
+
+  // ADMIN ONLY CAN DELETE PRODUCT (LOGIN IS REQUIRED)
   @UseGuards(AuthentificationGuard, AuthorizeGuard([Roles.ADMIN]))
   @Delete(':id')
   remove(@Param('id') id: string) {
